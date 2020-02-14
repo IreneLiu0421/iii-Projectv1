@@ -13,8 +13,7 @@
         if ($(this).is(":checked")) {
             $('input.box').each(function() {
                 if (!this.checked) {
-                    $('input#allchecked').prop("checked", flase);
-
+                    $('input#allchecked').prop("checked", false);
                 } else {
                     $('input#allchecked').prop("checked", true);
                     exit();

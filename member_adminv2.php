@@ -7,20 +7,6 @@
 require_once('./db.inc.php');
 require_once('./selectall.php');
 
-
-// //資料表總筆數
-// $sqlTotal = "SELECT count(1) FROM `member`";
-// $total = $pdo->query($sqlTotal)->fetch(PDO::FETCH_NUM)[0];
-
-// //每頁幾筆
-// $numPerPage = 10;
-// $totalPages = ceil($total / $numPerPage);
-
-// //目前第幾頁
-// $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
-
-// //若 page 小於 1，則回傳 1
-// $page = $page < 1 ? 1 : $page;
 ?>
 
 <!DOCTYPE html>

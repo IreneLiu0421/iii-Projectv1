@@ -7,7 +7,7 @@ $count = 0;
 for ($i = 0; $i < count($_POST['chk']); $i++) {
     //加入繫結陣列
     $arrParam = [
-        $_POST['chk'][$i]
+        (int) $_POST['chk'][$i]
     ];
 
     //找出特定 Image
@@ -20,11 +20,11 @@ for ($i = 0; $i < count($_POST['chk']); $i++) {
     if ($stmt_img->rowCount() > 0) {
         //取得檔案資料 (單筆)
         $arr = $stmt_img->fetchAll(PDO::FETCH_ASSOC);
-
         //刪除檔案
         $bool = unlink("./files/" . $arr[0]['Img']);
+        echo ($bool);
         //若檔案刪除成功，則刪除資料
-        if ($bool === true) {
+        if ($bool == true) {
             //SQL 語法
             $sql = "DELETE FROM `member` WHERE `ID` = ? ";
             $stmt = $pdo->prepare($sql);
@@ -49,5 +49,6 @@ if ($count > 0) {
     $objResponse['code'] = 500;
     $objResponse['info'] = "刪除失敗";
     echo json_encode($objResponse, JSON_UNESCAPED_UNICODE);
+    echo ($bool);
     exit();
 }
