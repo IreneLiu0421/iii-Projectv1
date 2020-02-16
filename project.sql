@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- 資料庫： `project`
 --
+CREATE DATABASE IF NOT EXISTS `project` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `project`;
 
 -- --------------------------------------------------------
 
@@ -50,66 +52,76 @@ INSERT INTO `admin` (`id`, `username`, `pwd`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `member` (
-  `ID` varchar(3) CHARACTER SET utf8 NOT NULL,
-  `Account` varchar(13) CHARACTER SET utf8 DEFAULT NULL,
-  `Email` varchar(48) CHARACTER SET utf8 DEFAULT NULL,
-  `Pwd` varchar(11) CHARACTER SET utf8 DEFAULT NULL,
-  `AccountActivated` int(1) DEFAULT NULL,
-  `Name` varchar(17) CHARACTER SET utf8 DEFAULT NULL,
-  `Gender` int(1) DEFAULT NULL,
-  `Birthday` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
-  `PhoneNumber` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
-  `Address` varchar(35) CHARACTER SET utf8 DEFAULT NULL,
-  `Blocked` varchar(3) CHARACTER SET utf8 DEFAULT NULL,
-  `Grade` varchar(3) CHARACTER SET utf8 DEFAULT NULL,
-  `Grade_Start` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
-  `Grade_Due` varchar(10) CHARACTER SET utf8 DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `ID` int(50) NOT NULL,
+  `Account` varchar(50) NOT NULL,
+  `AccountActivated` int(1) NOT NULL,
+  `Email` varchar(100) NOT NULL,
+  `Pwd` varchar(100) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `Gender` varchar(10) NOT NULL,
+  `Img` varchar(100) NOT NULL,
+  `Birthday` date NOT NULL,
+  `PhoneNumber` varchar(50) NOT NULL,
+  `Address` varchar(50) NOT NULL,
+  `Blocked` varchar(20) NOT NULL,
+  `VIP` varchar(10) NOT NULL,
+  `VIP_Start` date NOT NULL,
+  `VIP_Due` date NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `member`
 --
 
-INSERT INTO `member` (`ID`, `Account`, `Email`, `Pwd`, `AccountActivated`, `Name`, `Gender`, `Birthday`, `PhoneNumber`, `Address`, `Blocked`, `Grade`, `Grade_Start`, `Grade_Due`) VALUES
-('001', 'Brady0507', 'nibh@Nam.com', 'Merk87nc552', 1, 'Brady Stanley', 1, '1994/12/28', '0901208666', '5724 Nulla. Ave', 'No', 'Yes', NULL, NULL),
-('002', 'Nicholas1111', 'feugiat@Etiam.co.uk', 'Kmvu22sy942', 1, 'Nicholas Ferguson', 1, '1983/9/10', '0927600224', '434-5163 Porttitor Road', 'No', 'No', NULL, NULL),
-('003', 'Eden5468', 'lacus.Nulla.tincidunt@tempuslorem.net', 'Siff46wg012', 1, 'Eden Irwin', 0, '2007/11/17', '0967188791', '7810 Sapien St.', 'Yes', 'Yes', NULL, NULL),
-('004', 'Colton780', 'id.nunc@ideratEtiam.edu', 'Qcbf41nk269', 1, 'Colton Nicholson', 1, '2010/9/7', '0945386979', 'P.O. Box 138, 8133 A Avenue', 'No', 'No', NULL, NULL),
-('005', 'Isabelle65437', 'pharetra@nasceturridiculusmus.co.uk', 'Vxyu89bk898', 1, 'Isabelle Jacobson', 1, '1963/10/22', '0999424728', 'Ap #935-8367 Cum St.', 'No', 'Yes', NULL, NULL),
-('006', 'Kathleen89043', 'mauris@vitaeodio.org', 'Zbjb94qi123', 1, 'Kathleen Buck', 0, '1975/8/26', '0904214323', '7909 Malesuada Road', 'No', 'No', NULL, NULL),
-('007', 'Boris56803', 'lobortis.Class.aptent@ac.co.uk', 'Ylkn38zj663', 1, 'Boris Diaz', 0, '1997/12/4', '0912900648', 'Ap #890-9940 Suspendisse Avenue', 'No', 'Yes', NULL, NULL),
-('008', 'Xantha33', 'purus@Inmipede.org', 'Zsdx21ia304', 1, 'Xantha Bean', 1, '1975/8/7', '0902092983', '495-5505 Molestie Rd.', 'No', 'Yes', NULL, NULL),
-('009', 'Ulla4455', 'ridiculus@turpis.net', 'Oazn40fi106', 1, 'Ulla Hodges', 1, '1991/6/29', '0981849035', 'Ap #581-819 Non, Ave', 'No', 'Yes', NULL, NULL),
-('010', 'Sierra21', 'nisi.dictum.augue@commodotincidunt.net', 'Zdpz75wm568', 1, 'Sierra Palmer', 1, '1967/6/12', '0922039611', '998-344 In, Avenue', 'No', 'No', NULL, NULL),
-('011', 'Michelle', 'Nulla@Fusce.edu', 'Sfix59aw163', 1, 'Michelle Ramirez', 0, '1963/9/29', '0975903708', '212-5577 Consectetuer Av.', 'No', 'Yes', NULL, NULL),
-('012', 'Ralph45', 'Aenean@convallisantelectus.org', 'Tehs22hs346', 1, 'Ralph Lott', 1, '1967/12/6', '0932312010', '845 Ultrices St.', 'Yes', 'Yes', NULL, NULL),
-('013', 'Devin00', 'urna.Ut@a.ca', 'Kmvy50vd594', 1, 'Devin Bradshaw', 1, '1977/9/23', '0980756070', 'Ap #183-415 Sit Av.', 'Yes', 'Yes', NULL, NULL),
-('014', 'Kyla', 'sit.amet@loremDonecelementum.ca', 'Aiku19jx355', 1, 'Kyla Joyner', 1, '1992/9/1', '0953951377', 'Ap #602-5784 Dictum St.', 'No', 'Yes', NULL, NULL),
-('015', 'Sierra', 'semper.pretium@ligulaNullamenim.org', 'Uqbq97qw565', 1, 'Sierra Ramsey', 0, '1998/9/21', '0922038504', '289-841 Eu Rd.', 'No', 'Yes', NULL, NULL),
-('016', 'Julian567', 'Donec@primisinfaucibus.ca', 'Lddu96at852', 1, 'Julian Flores', 1, '1968/1/19', '0929003579', '8123 Augue Ave', 'Yes', 'Yes', NULL, NULL),
-('017', 'Russell777', 'nascetur.ridiculus@libero.com', 'Ecdr81la038', 1, 'Russell Kennedy', 1, '1990/2/25', '0960315189', 'Ap #899-9709 Nibh. Street', 'Yes', 'Yes', NULL, NULL),
-('018', 'Aiko99', 'augue.ac.ipsum@Donecfeugiatmetus.ca', 'Yooy27lu251', 1, 'Aiko Ramos', 0, '1986/10/25', '0920200069', 'P.O. Box 463, 9738 Et Rd.', 'No', 'No', NULL, NULL),
-('019', 'Vielka', 'sodales@sedconsequat.org', 'Tqjx65jn278', 1, 'Vielka Beach', 0, '2008/7/19', '0930637539', '306-5098 Laoreet Road', 'Yes', 'No', NULL, NULL),
-('020', 'Karleigh', 'molestie.pharetra@nec.ca', 'Nvis14jt525', 1, 'Karleigh Houston', 1, '1970/12/7', '0989893535', '3692 Nunc St.', 'No', 'No', NULL, NULL),
-('021', 'Keely7986', 'sem@Aliquam.co.uk', 'Xlbj22jg504', 1, 'Keely Ross', 0, '1974/2/2', '0930557368', '9673 Malesuada St.', 'Yes', 'No', NULL, NULL),
-('022', 'Aurora', 'augue@atpede.co.uk', 'Ylfo25bf967', 1, 'Aurora Figueroa', 1, '2008/2/14', '0946141594', '802-9209 Tempor, Av.', 'No', 'Yes', NULL, NULL),
-('023', 'Leigh0894', 'Ut.tincidunt.orci@rhoncusNullamvelit.com', 'Oedy51za116', 1, 'Leigh Stout', 0, '1968/1/23', '0906057370', 'P.O. Box 541, 6412 Velit Av.', 'Yes', 'No', NULL, NULL),
-('024', 'Basil', 'elit.elit@massalobortis.ca', 'Depl66he355', 1, 'Basil Galloway', 1, '1996/6/28', '0945421975', 'Ap #662-8812 Amet Ave', 'Yes', 'Yes', NULL, NULL),
-('025', 'Lee157', 'eget.tincidunt@hendreritconsectetuercursus.co.uk', 'Ubof68ab592', 1, 'Lee Cherry', 1, '1983/9/13', '0906246615', 'Ap #870-4061 Purus Ave', 'Yes', 'Yes', NULL, NULL),
-('026', 'Honorato', 'interdum.Nunc@Maurisblandit.ca', 'Nrnm93bm349', 1, 'Honorato Wiley', 0, '1976/3/31', '0957932366', '791-2253 Aliquet, Av.', 'No', 'No', NULL, NULL),
-('027', 'Chancellor88', 'magna@condimentumDonec.edu', 'Vtmy82vv869', 1, 'Chancellor Campos', 1, '1973/8/2', '0983288305', 'Ap #839-6517 Placerat Street', 'No', 'No', NULL, NULL),
-('028', 'Hu', 'vitae.sodales@magnaseddui.ca', 'Xwze03mb806', 1, 'Hu Mccarthy', 1, '1975/8/4', '0902561546', 'P.O. Box 940, 7217 Curabitur Street', 'No', 'Yes', NULL, NULL),
-('029', 'Amy', 'arcu@orciPhasellus.com', 'Rzvv64zj740', 1, 'Amy Rogers', 0, '1984/2/15', '0975911053', '4677 Mi Street', 'Yes', 'No', NULL, NULL),
-('030', 'Gil7115', 'velit.justo.nec@Nullam.edu', 'Wysg39gz851', 1, 'Gil Compton', 0, '1961/9/17', '0900284832', '331-7673 Sit St.', 'Yes', 'No', NULL, NULL),
-('031', 'Herman', 'sed@pretiumneque.ca', 'Esca09yx024', 1, 'Herman Anthony', 1, '1980/8/1', '0947710239', 'Ap #856-9889 Aliquet, St.', 'Yes', 'No', NULL, NULL),
-('032', 'Harrison', 'molestie@malesuadaaugue.org', 'Obar10my656', 1, 'Harrison Dale', 0, '1974/12/16', '0907540660', 'Ap #390-4764 Accumsan Road', 'Yes', 'No', NULL, NULL),
-('033', 'Summer0876', 'Morbi.non.sapien@ultrices.co.uk', 'Timg04jh504', 1, 'Summer Estrada', 1, '1963/9/14', '0958242249', '6196 Ut, St.', 'No', 'No', NULL, NULL),
-('034', 'Tatiana', 'Etiam.ligula@pharetrasedhendrerit.edu', 'Kncv61sg354', 1, 'Tatiana Chambers', 1, '1963/9/10', '0959626921', 'P.O. Box 584, 2411 Lectus St.', 'No', 'Yes', NULL, NULL),
-('035', 'Candice0887', 'ac.facilisis@Aliquamtinciduntnunc.com', 'Aero53gg771', 1, 'Candice Burke', 0, '1974/7/19', '943988182', 'P.O. Box 140, 8387 Velit. Av.', 'No', 'No', NULL, NULL);
+INSERT INTO `member` (`ID`, `Account`, `AccountActivated`, `Email`, `Pwd`, `Name`, `Gender`, `Img`, `Birthday`, `PhoneNumber`, `Address`, `Blocked`, `VIP`, `VIP_Start`, `VIP_Due`, `created_at`, `updated_at`) VALUES
+(1, 'Brady0507', 1, 'nibh@Nam.com', '3565a686e7e365cd1902235baeda712efa9f3c6f', 'Brady Stanley', '男', '', '1994-12-28', '0901208666', '5724 Nulla. Ave', 'NO', 'YES', '2019-01-01', '2020-01-01', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(2, 'Nicholas1111', 1, 'feugiat@Etiam.co.uk', '52253a27b6ea0a63bbd2a48b24ffc141ea8e752b', 'Nicholas Ferguson', '男', '', '1983-09-10', '0927600224', '434-5163 Porttitor Road', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(3, 'Eden5468', 1, 'lacus.Nulla.tincidunt@tempuslorem.net', '6c0602ec5cb683c76e9eeec6b8fff8fea3b2dec2', 'Eden Irwin', '女', '', '2007-11-17', '0967188791', '7810 Sapien St.', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(4, 'Colton780', 1, 'id.nunc@ideratEtiam.edu', 'a44a6c035ed805e4b3d9086c64c46fb2885fcadd', 'Colton Nicholson', '男', '', '2010-09-07', '0945386979', 'P.O. Box 138, 8133 A Avenue', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(5, 'Isabelle65437', 1, 'pharetra@nasceturridiculusmus.co.uk', '4ef77757e8c3bef5f98016fabecb483860615c78', 'Isabelle Jacobson', '男', '', '1963-10-22', '0999424728', 'Ap #935-8367 Cum St.', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(6, 'Kathleen89043', 1, 'mauris@vitaeodio.org', 'e58c994d320dac65758fee6f8712084d33af38b5', 'Kathleen Buck', '女', '', '1975-08-26', '0904214323', '7909 Malesuada Road', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(7, 'Boris56803', 1, 'lobortis.Class.aptent@ac.co.uk', '5f3db71cf732c9cad0c9f2b2ff10adbfa93fb687', 'Boris Diaz', '女', '', '1997-12-04', '0912900648', 'Ap #890-9940 Suspendisse Avenue', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(8, 'Xantha33', 1, 'purus@Inmipede.org', '720e54922f8ad00f207f845df03709c17b0e27f8', 'Xantha Bean', '男', '', '1975-08-07', '0902092983', '495-5505 Molestie Rd.', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(9, 'Ulla4455', 1, 'ridiculus@turpis.net', '87793af5949f9f7b4aee0762084c83128169a02c', 'Ulla Hodges', '男', '', '1991-06-29', '0981849035', 'Ap #581-819 Non, Ave', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(10, 'Sierra21', 1, 'nisi.dictum.augue@commodotincidunt.net', 'f97056fe7961dab9444af6be16614dc3c150879c', 'Sierra Palmer', '男', '', '1967-06-12', '0922039611', '998-344 In, Avenue', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(11, 'Michelle', 1, 'Nulla@Fusce.edu', '187569f5bdd27560c0451eccd8f24cd22232637f', 'Michelle Ramirez', '女', '', '1963-09-29', '0975903708', '212-5577 Consectetuer Av.', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(12, 'Ralph45', 1, 'Aenean@convallisantelectus.org', 'c587125d3df5c300c42b1600b4d9437c62d3afdc', 'Ralph Lott', '男', '', '1967-12-06', '0932312010', '845 Ultrices St.', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(13, 'Devin00', 1, 'urna.Ut@a.ca', '3ff7ee5ef842c6e56ad367ee2937a127f3c76f5a', 'Devin Bradshaw', '男', '', '1977-09-23', '0980756070', 'Ap #183-415 Sit Av.', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(14, 'Kyla', 1, 'sit.amet@loremDonecelementum.ca', 'b17fbb609146d64cc588cbad1abe88833c9a2975', 'Kyla Joyner', '男', '', '1992-09-01', '0953951377', 'Ap #602-5784 Dictum St.', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(15, 'Sierra', 1, 'semper.pretium@ligulaNullamenim.org', '5f884cf5694022e258e7ab8cb717110d81776b84', 'Sierra Ramsey', '女', '', '1998-09-21', '0922038504', '289-841 Eu Rd.', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(16, 'Julian567', 1, 'Donec@primisinfaucibus.ca', '8261bb7c51ec3cc7ebbcaf11f787b6fc9402c224', 'Julian Flores', '男', '', '1968-01-19', '0929003579', '8123 Augue Ave', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(17, 'Russell777', 1, 'nascetur.ridiculus@libero.com', 'ac5497f20f46a45ae428559655066789aa5b9e25', 'Russell Kennedy', '男', '', '1990-02-25', '0960315189', 'Ap #899-9709 Nibh. Street', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(18, 'Aiko99', 1, 'augue.ac.ipsum@Donecfeugiatmetus.ca', 'ec3f1cb6d0a113f98075deff829b91405e28a9e8', 'Aiko Ramos', '女', '', '1986-10-25', '0920200069', 'P.O. Box 463, 9738 Et Rd.', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(19, 'Vielka', 1, 'sodales@sedconsequat.org', '8331a54fdd530cbeda32c4c35d03a0c64d8d8927', 'Vielka Beach', '女', '', '2008-07-19', '0930637539', '306-5098 Laoreet Road', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(20, 'Karleigh', 1, 'molestie.pharetra@nec.ca', '3f90458111e78a8863283c921df4ad88658f3064', 'Karleigh Houston', '男', '', '1970-12-07', '0989893535', '3692 Nunc St.', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(21, 'Keely7986', 1, 'sem@Aliquam.co.uk', '0c61e93e83827f94c3ae8704406e71f974cc450f', 'Keely Ross', '女', '', '1974-02-02', '0930557368', '9673 Malesuada St.', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(22, 'Aurora', 1, 'augue@atpede.co.uk', 'f0c300ffd00f401b3a9cce514b2c3ebd905e1d39', 'Aurora Figueroa', '男', '', '2008-02-14', '0946141594', '802-9209 Tempor, Av.', 'NO', 'YES', '2019-05-01', '2020-05-01', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(23, 'Leigh0894', 1, 'Ut.tincidunt.orci@rhoncusNullamvelit.com', '87b3dd56f808ceac5f02d7f955fe0757d0652764', 'Leigh Stout', '女', '', '1968-01-23', '0906057370', 'P.O. Box 541, 6412 Velit Av.', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(24, 'Basil', 1, 'elit.elit@massalobortis.ca', '162ba2e40961fccd210e033ff2bce83f103e4dcf', 'Basil Galloway', '男', '', '1996-06-28', '0945421975', 'Ap #662-8812 Amet Ave', 'NO', 'YES', '2019-10-20', '2020-10-31', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(25, 'Lee157', 1, 'eget.tincidunt@hendreritconsectetuercursus.co.uk', '1d9b48ca521d57df8c0b3bb316b323f6b625cdc3', 'Lee Cherry', '男', '', '1983-09-13', '0906246615', 'Ap #870-4061 Purus Ave', 'YES', 'YES', '2020-01-01', '2021-01-01', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(26, 'Honorato', 1, 'interdum.Nunc@Maurisblandit.ca', '709d6b18bf0a274433ca3f47eeff071fc9974bf6', 'Honorato Wiley', '女', '', '1976-03-31', '0957932366', '791-2253 Aliquet, Av.', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(27, 'Chancellor88', 1, 'magna@condimentumDonec.edu', 'a7b52067308457bba91955c4ca2ef0c376641973', 'Chancellor Campos', '男', '', '1973-08-02', '0983288305', 'Ap #839-6517 Placerat Street', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(28, 'Hu', 1, 'vitae.sodales@magnaseddui.ca', '5cb7829bab81459668ef97549fa0d82fb2b399b4', 'Hu Mccarthy', '男', '', '1975-08-04', '0902561546', 'P.O. Box 940, 7217 Curabitur Street', 'NO', 'YES', '2020-02-03', '2020-02-03', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(29, 'Amy', 1, 'arcu@orciPhasellus.com', '66f8ec6cc042a764e0990c2da0f836c3ec54eabe', 'Amy Rogers', '女', '', '1984-02-15', '0975911053', '4677 Mi Street', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(30, 'Gil7115', 1, 'velit.justo.nec@Nullam.edu', '3068720b88c2fdd25e60f14ea051c9b94893f8f1', 'Gil Compton', '女', '', '1961-09-17', '0900284832', '331-7673 Sit St.', 'YES', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(31, 'Herman', 1, 'sed@pretiumneque.ca', 'a2fbf9b918a6b40edfcd1e51cff4c4bf42bbb411', 'Herman Anthony', '男', '', '1980-08-01', '0947710239', 'Ap #856-9889 Aliquet, St.', 'YES', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(32, 'Harrison', 1, 'molestie@malesuadaaugue.org', 'f7c305a529d5bc8d1bcbd3eb6c4784d10b8309bb', 'Harrison Dale', '女', '', '1974-12-16', '0907540660', 'Ap #390-4764 Accumsan Road', 'YES', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(33, 'Summer0876', 1, 'Morbi.non.sapien@ultrices.co.uk', '4146e5d02329bdffc3e1f9e0656bb863d059f2ef', 'Summer Estrada', '男', '', '1963-09-14', '0958242249', '6196 Ut, St.', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(34, 'Tatiana', 1, 'Etiam.ligula@pharetrasedhendrerit.edu', 'ae0a44d8836092e9a5ba56d5a180146843eef99a', 'Tatiana Chambers', '男', '', '1963-09-10', '0959626921', 'P.O. Box 584, 2411 Lectus St.', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:49', '2020-02-16 16:14:49'),
+(35, 'test', 1, 'test111@ntu.edu.tw', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', '', '', '', '1991-04-21', '0981999003', 'P.O. Box 571, 2411 Lectus St.', 'NO', 'YES', '0000-00-00', '0000-00-00', '2020-02-16 16:14:50', '2020-02-16 16:14:50'),
+(36, 'Candice0887', 1, 'ac.facilisis@Aliquamtinciduntnunc.com', '5a6c027739911150b239b885770dc731e94fe4a4', 'Candice Burke', '女', '', '1974-07-19', '0943988182', 'P.O. Box 140, 8387 Velit. Av.', 'NO', 'NO', '0000-00-00', '0000-00-00', '2020-02-16 16:14:50', '2020-02-16 16:14:50');
 
 --
 -- 已傾印資料表的索引
 --
+
+--
+-- 資料表索引 `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- 資料表索引 `member`
@@ -117,6 +129,22 @@ INSERT INTO `member` (`ID`, `Account`, `Email`, `Pwd`, `AccountActivated`, `Name
 ALTER TABLE `member`
   ADD PRIMARY KEY (`ID`),
   ADD UNIQUE KEY `Account` (`Account`);
+
+--
+-- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
+--
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT COMMENT '流水號', AUTO_INCREMENT=2;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `member`
+--
+ALTER TABLE `member`
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -52,9 +52,9 @@ for ($i = 2; $i <= $highestRow; $i++) {
     $arrParam = [
         (int) $ID,
         (string) $Account,
+        (int) $AccountActivated,
         (string) $Email,
         (string) $Pwd,
-        (int) $AccountActivated,
         (string) $Name,
         (string) $Gender,
         (string) $Img,
